@@ -46,13 +46,40 @@ products.forEach((prod)=>{
                     Added
                 </div>
 
-                <button class="add-to-cart-button button-primary">
+                <button class="add-to-cart-button button-primary js-cart"
+                data-property-id = "${prod.id}">
                     Add to Cart
                 </button>
                 </div>
 
     `;
 })
-console.log(ProductsHTML);
+
 
 document.querySelector('.js-grid').innerHTML = ProductsHTML;
+
+document.querySelectorAll('.js-cart')
+    .forEach((cartbtn)=>{
+        cartbtn.addEventListener('click',()=>{
+          const productId =  cartbtn.dataset.propertyId; //When we declare the data att.name we have converted from kebab case(dat-proprty-id) to camel case (propertyId)          //property --> data-propety(Data Attribute name)
+
+          let matchItem;
+
+    cart.forEach((item)=>{
+        if(productId === item.name ){
+           matchItem = item ;    
+        }
+    });
+    if(matchItem){
+        matchItem.quantity +=1;
+    }
+
+    else{
+        cart.push({
+            name : productId,
+            quantity : 1
+          })
+    }
+          console.log(cart)
+        }) 
+    })
