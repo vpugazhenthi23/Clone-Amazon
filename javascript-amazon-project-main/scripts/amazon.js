@@ -1,6 +1,6 @@
 
 let ProductsHTML = '';
-products.forEach((prod)=>{
+products.forEach((prod) => {
     ProductsHTML += `
             <div class="product-container">
                 <div class="product-image-container">
@@ -59,27 +59,33 @@ products.forEach((prod)=>{
 document.querySelector('.js-grid').innerHTML = ProductsHTML;
 
 document.querySelectorAll('.js-cart')
-    .forEach((cartbtn)=>{
-        cartbtn.addEventListener('click',()=>{
-          const productId =  cartbtn.dataset.propertyId; //When we declare the data att.name we have converted from kebab case(dat-proprty-id) to camel case (propertyId)          //property --> data-propety(Data Attribute name)
+    .forEach((cartbtn) => {
+        cartbtn.addEventListener('click', () => {
+            const productId = cartbtn.dataset.propertyId; //When we declare the data att.name we have converted from kebab case(dat-proprty-id) to camel case (propertyId)          //property --> data-propety(Data Attribute name)
 
-          let matchItem;
+            let matchItem;
 
-    cart.forEach((item)=>{
-        if(productId === item.name ){
-           matchItem = item ;    
-        }
-    });
-    if(matchItem){
-        matchItem.quantity +=1;
-    }
+            cart.forEach((item) => {
+                if (productId === item.id) {
+                    matchItem = item;
+                }
+            });
+            if (matchItem) {
+                matchItem.quantity += 1;
+            }
 
-    else{
-        cart.push({
-            name : productId,
-            quantity : 1
-          })
-    }
-          console.log(cart)
-        }) 
+            else {
+                cart.push({
+                    id: productId,
+                    quantity: 1
+                });
+            };
+
+            let cartQuantity = 0;
+            
+                cart.forEach((item) => {
+                    cartQuantity += item.quantity;
+                });
+                document.querySelector('.add-cart').innerHTML = cartQuantity;
+        })
     })
