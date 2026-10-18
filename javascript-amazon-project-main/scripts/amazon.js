@@ -82,10 +82,12 @@ document.querySelectorAll('.js-cart')
             };
 
             let cartQuantity = 0;
-            
-                cart.forEach((item) => {
-                    cartQuantity += item.quantity;
-                });
-                document.querySelector('.add-cart').innerHTML = cartQuantity;
+
+            cart.forEach((item) => {
+                cartQuantity += item.quantity;
+            });
+            document.querySelector('.add-cart').innerHTML = cartQuantity;
+            console.log(cart)
+            console.log(cartQuantity)
         })
     })
