@@ -24,8 +24,8 @@ products.forEach((prod) => {
                     $${(prod.priceCents / 100).toFixed(2)}
                 </div>
 
-                <div class="product-quantity-container">
-                    <select>
+                <div class="product-quantity-container ">
+                    <select class = "js-quantity-selector-${prod.id}">
                     <option selected value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -47,7 +47,7 @@ products.forEach((prod) => {
                 </div>
 
                 <button class="add-to-cart-button button-primary js-cart"
-                data-property-id = "${prod.id}">
+                data-property-id = "${prod.id}" data-property-name ="${prod.name}">
                     Add to Cart
                 </button>
                 </div>
@@ -61,8 +61,12 @@ document.querySelector('.js-grid').innerHTML = ProductsHTML;
 document.querySelectorAll('.js-cart')
     .forEach((cartbtn) => {
         cartbtn.addEventListener('click', () => {
-            const productId = cartbtn.dataset.propertyId; //When we declare the data att.name we have converted from kebab case(dat-proprty-id) to camel case (propertyId)          //property --> data-propety(Data Attribute name)
+            const productName = cartbtn.dataset.propertyName;
+          const productId = cartbtn.dataset.propertyId;
+            const quantNum = document.querySelector(`.js-quantity-selector-${productId}`);
 
+            const quantValue = Number(quantNum.value);
+            
             let matchItem;
 
             cart.forEach((item) => {
@@ -71,13 +75,14 @@ document.querySelectorAll('.js-cart')
                 }
             });
             if (matchItem) {
-                matchItem.quantity += 1;
+                matchItem.quantity += quantValue;
             }
 
             else {
                 cart.push({
                     id: productId,
-                    quantity: 1
+                    name : productName,
+                    quantity: quantValue
                 });
             };
 
@@ -88,6 +93,6 @@ document.querySelectorAll('.js-cart')
             });
             document.querySelector('.add-cart').innerHTML = cartQuantity;
             console.log(cart)
-            console.log(cartQuantity)
+
         })
     })
