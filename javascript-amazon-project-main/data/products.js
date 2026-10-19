@@ -656,5 +656,74 @@ const products = [
       "apparel",
       "mens"
     ]
+  },{
+    id: 'id1',
+    image: 'images/products/Apple-iPhone-Sky-Blue.avif',
+    name: 'Apple iPhone Air 256GB Sky Blue',
+    rating: {
+      stars: 4.5,
+      count:4500
+    },
+    priceCents : 79900,
+    keywords: [
+      "Compact and Slim",
+      "Attractive",
+      "Futuristic Design"
+    ]
+  },{
+    id: "id2",
+    image: "images/products/323523_0_uYx-xUc3M.webp",
+    name : "Dell 16 Plus 2-in-1 Laptop",
+    rating: {
+      stars : 4.5,
+      count : 452
+    },
+    priceCents: 89000,
+    keywords: [
+      "Rotato 360",
+      "Slim and Light Weight",
+      "Touch Display"
+    ]
+  },{
+    id: "id3",
+    image: "images/products/images.jpg",
+    name: "Sony India Launches BRAVIA 3 Series: A New Era in Home Entertainment",
+    rating: {
+      stars: 4,
+      count: 678,
+    },
+    priceCents: 89900,
+    keywords: [
+      "Ultra 4kHD",
+      "Dolby Atmos",
+      "Dolby Vision"
+    ]
+  },{
+    id: 'idi12',
+    image: 'images/products/watch.webp',
+    name: 'Breitling Navitimer Automatic GMT 41 A32310211G1P Watch for Men',
+    rating: {
+      stars: 4.5,
+      count: 1203,
+    },
+    priceCents: 17800
+  },{
+    id: 'idi13',
+    image: 'images/products/fan.jpg',
+    name: 'Chetak Plus Ceiling Fan 24 inch',
+    rating: {
+      stars: 4,
+      count: 423,
+    },
+    priceCents: 6800
+  },{
+    id: 'idi14',
+    image: 'images/products/fidge.jpg',
+    name:'GGTB 3.0 Cu.ft Retro Double Door Mini Fridge',
+    rating: {
+      stars: 4.5,
+      count: 1242
+    },
+    priceCents: 26900
   }
 ];

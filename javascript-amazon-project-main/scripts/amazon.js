@@ -62,7 +62,7 @@ document.querySelectorAll('.js-cart')
     .forEach((cartbtn) => {
         cartbtn.addEventListener('click', () => {
             const productName = cartbtn.dataset.propertyName;
-          const productId = cartbtn.dataset.propertyId;
+            const productId = cartbtn.dataset.propertyId;
             const quantNum = document.querySelector(`.js-quantity-selector-${productId}`);
 
             const quantValue = Number(quantNum.value);
