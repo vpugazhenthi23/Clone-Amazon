@@ -1,5 +1,4 @@
-
-let ProductsHTML = '';
+let ProductsHTML = "";
 products.forEach((prod) => {
     ProductsHTML += `
             <div class="product-container">
@@ -42,7 +41,7 @@ products.forEach((prod) => {
                 <div class="product-spacer"></div>
 
                 <div class="added-to-cart js-added-${prod.id}">
-                    <img src="images/icons/checkmark.png">
+                    <img src= "images/icons/greentick.webp">
                     Added
                 </div>
 
@@ -53,56 +52,58 @@ products.forEach((prod) => {
                 </div>
 
     `;
-})
+});
 
+document.querySelector(".js-grid").innerHTML = ProductsHTML;
 
-document.querySelector('.js-grid').innerHTML = ProductsHTML;
+let timerStorage = {};
 
-document.querySelectorAll('.js-cart')
-    .forEach((cartbtn) => {
-        let timeId;
-        cartbtn.addEventListener('click', () => {
-            const productName = cartbtn.dataset.propertyName;
-            const productId = cartbtn.dataset.propertyId;
-            const quantNum = document.querySelector(`.js-quantity-selector-${productId}`);
-            const extractValue = document.querySelector(`.js-added-${productId}`);
-            extractValue.classList.add('css-added');
-            let getValue = extractValue.innerHTML = 'Added';
+document.querySelectorAll(".js-cart").forEach((cartbtn) => {
+    cartbtn.addEventListener("click", () => {
+        const productName = cartbtn.dataset.propertyName;
+        const productId = cartbtn.dataset.propertyId;
+        const quantNum = document.querySelector(
+            `.js-quantity-selector-${productId}`,
+        );
+        const extractValue = document.querySelector(`.js-added-${productId}`);
+        extractValue.classList.add("css-added");
 
-            clearTimeout(timeId);
-          
-            timeId = setTimeout(() => {
-                document.querySelector(`.js-added-${productId}`).innerHTML = '';
-            }, 2000)
+        const previousTimerId = timerStorage[productId];
+        if (previousTimerId) {
+            clearTimeout(previousTimerId);
+        }
 
-            const quantValue = Number(quantNum.value);
+        const timeId = setTimeout(() => {
+            extractValue.classList.remove("css-added");
+        }, 2000);
 
-            let matchItem;
+        timerStorage[productId] = timeId;
 
-            cart.forEach((item) => {
-                if (productId === item.id) {
-                    matchItem = item;
-                }
-            });
-            if (matchItem) {
-                matchItem.quantity += quantValue;
+        const quantValue = Number(quantNum.value);
+
+        let matchItem;
+
+        cart.forEach((item) => {
+            if (productId === item.id) {
+                matchItem = item;
             }
-
-            else {
-                cart.push({
-                    id: productId,
-                    name: productName,
-                    quantity: quantValue
-                });
-            };
-
-            let cartQuantity = 0;
-
-            cart.forEach((item) => {
-                cartQuantity += item.quantity;
+        });
+        if (matchItem) {
+            matchItem.quantity += quantValue;
+        } else {
+            cart.push({
+                id: productId,
+                name: productName,
+                quantity: quantValue,
             });
-            document.querySelector('.add-cart').innerHTML = cartQuantity;
-            console.log(cart)
+        }
 
-        })
-    })
+        let cartQuantity = 0;
+
+        cart.forEach((item) => {
+            cartQuantity += item.quantity;
+        });
+        document.querySelector(".add-cart").innerHTML = cartQuantity;
+        console.log(cart);
+    });
+});
