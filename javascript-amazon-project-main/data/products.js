@@ -687,7 +687,7 @@ export const products = [
   },{
     id: "id3",
     image: "images/products/images.jpg",
-    name: "Sony India Launches BRAVIA 3 Series: A New Era in Home Entertainment",
+    name: "Sony BRAVIA 3 Series: A New Era in Home Entertainment",
     rating: {
       stars: 4,
       count: 678,
