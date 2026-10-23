@@ -1,50 +1,60 @@
-export let cart = [{
-    productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
-    quantity: 2,
-},{
-    productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
-    quantity: 1
-}];
+export let cart = JSON.parse(localStorage.getItem('cart'));
 
-export function addToCart (productId,productName,quantNum,extractValue){
+if (!cart) {
+    cart = [{
+        productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
+        quantity: 2,
+    }, {
+        productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
+        quantity: 1
+    }];
+}
+
+function cartStore() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+export function addToCart(productId, productName, quantNum, extractValue) {
     let timerStorage = {};
-     const previousTimerId = timerStorage[productId];
-        if (previousTimerId) {
-            clearTimeout(previousTimerId);
+    const previousTimerId = timerStorage[productId];
+    if (previousTimerId) {
+        clearTimeout(previousTimerId);
+    }
+
+    const timeId = setTimeout(() => {
+        extractValue.classList.remove("css-added");
+    }, 2000);
+
+    timerStorage[productId] = timeId;
+
+    const quantValue = Number(quantNum.value);
+
+    let matchItem;
+
+    cart.forEach((item1) => {
+        if (productId === item1.productId) {
+            matchItem = item1;
         }
-
-        const timeId = setTimeout(() => {
-            extractValue.classList.remove("css-added");
-        }, 2000);
-
-        timerStorage[productId] = timeId;
-
-        const quantValue = Number(quantNum.value);
-
-        let matchItem;
-
-        cart.forEach((item1) => {
-            if (productId === item1.id) {
-                matchItem = item1;
-            }
+    });
+    if (matchItem) {
+        matchItem.quantity += quantValue;
+    } else {
+        cart.push({
+            productId: productId,
+            name: productName,
+            quantity: quantValue,
         });
-        if (matchItem) {
-            matchItem.quantity += quantValue;
-        } else {
-            cart.push({
-                id: productId,
-                name: productName,
-                quantity: quantValue,
-            });
-        }
+    }
+    cartStore()
 }
 export function removeCart(productId) {
-    const  newCart = [];
-     
+    const newCart = [];
+
     cart.forEach((cartItem) => {
-        if(cartItem.productId != productId){
+        if ((cartItem.productId ?? cartItem.id) !== productId) {
             newCart.push(cartItem);
         }
     })
     cart = newCart;
+    cartStore();
 }

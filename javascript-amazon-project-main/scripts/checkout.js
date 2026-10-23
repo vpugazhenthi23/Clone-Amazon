@@ -1,21 +1,23 @@
 import { cart, removeCart } from '../data/cart.js';
-import { products} from '../data/products.js';
+import { products } from '../data/products.js';
 import { formatMoney } from './utils/currency.js';
 
 let productsResult = '';
 
-cart.forEach((cartItem)=>{
+cart.forEach((cartItem) => {
+    
     const productId = cartItem.productId;
 
     let matchingProduct;
 
     products.forEach((product) => {
-        if(productId === product.id){
+        if (productId === product.id) {
             matchingProduct = product;
         }
     })
-    
+
     productsResult += `
+    
     <div class="cart-item-container 
         js-cart-item-${matchingProduct.id}
     ">
