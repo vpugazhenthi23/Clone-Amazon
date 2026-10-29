@@ -109,6 +109,6 @@ document.querySelectorAll('.js-delete')
 
             const cartItem = document.querySelector(`.js-cart-item-${productId}`);
             cartItem.remove();
-            console.log(cartItem)
         })
     })
+ 

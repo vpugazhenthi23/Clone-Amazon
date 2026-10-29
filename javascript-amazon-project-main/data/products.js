@@ -152,13 +152,13 @@ export const products = [
   },
   {
     id: "5968897c-4d27-4872-89f6-5bcb052746d7",
-    image: "images/products/women-chiffon-beachwear-coverup-black.jpg",
-    name: "Women's Chiffon Beachwear Cover Up - Black",
+    image: "images/products/coat.jpg",
+    name: "Mens 2 Piece Suit Slim 2 Button Prom Suit Jacket Pants Tuxedo Set",
     rating: {
       stars: 4.5,
       count: 235
     },
-    priceCents: 2070,
+    priceCents: 29990,
     keywords: [
       "robe",
       "swimsuit",
@@ -295,13 +295,13 @@ export const products = [
   },
   {
     id: "b0f17cc5-8b40-4ca5-9142-b61fe3d98c85",
-    image: "images/products/women-stretch-popover-hoodie-black.jpg",
-    name: "Women's Stretch Popover Hoodie",
+    image: "images/products/graphics-card.jpg",
+    name: "GIGABYTE GeForce RTX 5060 WINDFORCE MAX OC 8GB GDDR7, PCIe 5.0 Graphics Card – Blackwell DLSS 4, 3840 CUDA Cores, 2512 MHz Boost Clock, 128-bit, HV Fans",
     rating: {
       stars: 4.5,
       count: 2465
     },
-    priceCents: 1374,
+    priceCents: 26990,
     keywords: [
       "hooded",
       "hoodies",
