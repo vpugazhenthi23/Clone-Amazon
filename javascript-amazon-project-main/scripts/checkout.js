@@ -100,6 +100,7 @@ cart.forEach((cartItem) => {
 })
 
 document.querySelector('.js-order').innerHTML = productsResult;
+document.querySelector('.js-link').innerHTML = `${cart.length} Items`;
 
 document.querySelectorAll('.js-delete')
     .forEach((link) => {

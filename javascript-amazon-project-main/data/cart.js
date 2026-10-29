@@ -57,4 +57,5 @@ export function removeCart(productId) {
     })
     cart = newCart;
     cartStore();
+    document.querySelector('.js-link').innerHTML = `${cart.length} Items`;
 }
