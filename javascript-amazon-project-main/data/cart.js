@@ -58,4 +58,10 @@ export function removeCart(productId) {
     cart = newCart;
     cartStore();
     document.querySelector('.js-link').innerHTML = `${cart.length} Items`;
+    if (cart.length === 1) {
+        document.querySelector('.js-link').innerHTML = `${cart.length} Item`;
+    }
+    if(cart.length === 0){
+        document.querySelector('.js-2').innerHTML;
+    }
 }
