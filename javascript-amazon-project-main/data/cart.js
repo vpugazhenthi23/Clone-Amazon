@@ -61,7 +61,12 @@ export function removeCart(productId) {
     if (cart.length === 1) {
         document.querySelector('.js-link').innerHTML = `${cart.length} Item`;
     }
-    if(cart.length === 0){
-        document.querySelector('.js-2').innerHTML;
-    }
+}
+export function updateQuantity(saveId, newInput){
+    cart.forEach((item) => {
+        if(item.productId === saveId){
+            item.quantity = newInput;
+        }
+    })
+    cartStore();
 }

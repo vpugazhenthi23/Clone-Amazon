@@ -1,4 +1,4 @@
-import { cart, removeCart } from "../data/cart.js";
+import { cart, removeCart, updateQuantity } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatMoney } from "./utils/currency.js";
 
@@ -44,8 +44,9 @@ cart.forEach((cartItem) => {
                 Update
                 </span>
                  <span>
-                    <input class="quantity-input ip-quantity-${matchingProduct.id}">
-                    <span class="save-quantity-link link-primary" 
+                    <input class="quantity-input ip-quantity-${matchingProduct.id}" 
+                     data-input-id = "${matchingProduct.id}">
+                    <span class="save-quantity-link link-primary js-key" 
                         data-save-id="${matchingProduct.id}">
                      Save
                     </span>
@@ -110,10 +111,6 @@ document.querySelector(".js-order").innerHTML = productsResult;
 
 document.querySelector(".js-link").innerHTML = `${cart.length} Items`;
 
-if (cart.length <= 1) {
-    document.querySelector(".js-link").innerHTML = `${cart.length} Item`;
-}
-
 document.querySelectorAll(".js-delete").forEach((link) => {
     link.addEventListener("click", () => {
         const productId = link.dataset.propertyId;
@@ -133,15 +130,40 @@ document.querySelectorAll(".js-update").forEach((link) => {
 });
 
 document.querySelectorAll(".save-quantity-link").forEach((item) => {
+    const saveId = item.dataset.saveId;
+    const inputElement = document.querySelector(`.ip-quantity-${saveId}`);
+    let newInput = Number(inputElement.value);
+    document.body.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            console.log(newInput);
+            updateQuantity(saveId, newInput); 
+        }
+    });
     item.addEventListener("click", () => {
         const saveId = item.dataset.saveId;
-         document.querySelector(`.js-cart-item-${saveId}`)
-            .classList.remove("is-editing-quantity");
+        const changeId = document.querySelector(`.js-cart-item-${saveId}`)
+        changeId.classList.remove("is-editing-quantity");
 
-        const inputElement = document.querySelector (`.ip-quantity-${saveId}`);
-        let newInput = Number(inputElement.value)
+        const inputElement = document.querySelector(`.ip-quantity-${saveId}`);
+        let newInput = Number(inputElement.value);
+        updateQuantity(saveId, newInput);
 
-      document.querySelector(`.label-quantity-${saveId}`).innerHTML = newInput
-
+        if (newInput > 0 && newInput < 100) {
+            const quantityLabel = document.querySelector(`.label-quantity-${saveId}`);
+            quantityLabel.innerHTML = newInput;
+        } else {
+            alert(`You reached maximum capcity of quantity --> ${newInput}`);
+            newInput = 0;
+            const quantityLabel = document.querySelector(`.label-quantity-${saveId}`);
+            quantityLabel.innerHTML = newInput;
+            updateQuantity(saveId, newInput);
+        }
+        document.body.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                console.log("Pressed");
+                updateQuantity(saveId, newInput);
+            }
+        });
     });
 });
+
