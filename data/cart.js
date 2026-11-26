@@ -1,4 +1,4 @@
-export let cart = JSON.parse(localStorage.getItem('cart'));
+export let cart = JSON.parse(localStorage.getItem('cart1'));
 
 if (!cart) {
     cart = [{
@@ -11,14 +11,13 @@ if (!cart) {
 }
 
 function cartStore() {
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('cart1', JSON.stringify(cart));
     localStorage.setItem('quantity', JSON.stringify(getCartQuantity()));
-}
 
+}
 function getCartQuantity() {
     return cart.reduce((total, item) => total + item.quantity, 0);
 }
-
 export function addToCart(productId, productName, quantNum, extractValue) {
     let timerStorage = {};
     const previousTimerId = timerStorage[productId];
@@ -68,6 +67,10 @@ export function removeCart(productId) {
     }
 }
 export function updateCartQuantity() {
+   /*  let cartQuantity = 0;
+    cart.forEach((item2) => {
+        cartQuantity += item2.quantity;
+    }) */
     const cartQuantity = getCartQuantity();
     localStorage.setItem('quantity', JSON.stringify(cartQuantity));
     document.querySelector(".add-cart").textContent = cartQuantity;

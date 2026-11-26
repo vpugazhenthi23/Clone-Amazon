@@ -153,14 +153,6 @@ document.querySelectorAll(".save-quantity-link").forEach((item) => {
             quantityLabel.innerHTML = newInput;
             updateQuantity(saveId, newInput);
         }
-        /* document.body.addEventListener("keydown", (event) => {
-            if (event.key === "Enter") {
-                console.log("Pressed");
-                updateQuantity(saveId, newInput);
-            }
-        }); */
-
-        document.querySelector('')
     });
 });
 

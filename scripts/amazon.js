@@ -58,6 +58,7 @@ products.forEach((prod) => {
 });
 
 document.querySelector(".js-grid").innerHTML = productsHTML;
+
 updateCartQuantity();
 
 document.querySelectorAll(".js-cart").forEach((cartbtn) => {
@@ -73,7 +74,5 @@ document.querySelectorAll(".js-cart").forEach((cartbtn) => {
         addToCart(productId, productName, quantNum, extractValue);
 
         updateCartQuantity()
-
-
     });
 });
