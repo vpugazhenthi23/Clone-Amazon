@@ -133,12 +133,7 @@ document.querySelectorAll(".save-quantity-link").forEach((item) => {
     const saveId = item.dataset.saveId;
     const inputElement = document.querySelector(`.ip-quantity-${saveId}`);
     let newInput = Number(inputElement.value);
-    document.body.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-            console.log(newInput);
-            updateQuantity(saveId, newInput); 
-        }
-    });
+    
     item.addEventListener("click", () => {
         const saveId = item.dataset.saveId;
         const changeId = document.querySelector(`.js-cart-item-${saveId}`)
@@ -158,12 +153,14 @@ document.querySelectorAll(".save-quantity-link").forEach((item) => {
             quantityLabel.innerHTML = newInput;
             updateQuantity(saveId, newInput);
         }
-        document.body.addEventListener("keydown", (event) => {
+        /* document.body.addEventListener("keydown", (event) => {
             if (event.key === "Enter") {
                 console.log("Pressed");
                 updateQuantity(saveId, newInput);
             }
-        });
+        }); */
+
+        document.querySelector('')
     });
 });
 
