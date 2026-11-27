@@ -77,8 +77,8 @@ export const products = [
   },
   {
     id: "8c9c52b5-5a19-4bcb-a5d1-158a74287c53",
-    image: "images/products/6-piece-non-stick-baking-set.webp",
-    name: "6-Piece Nonstick, Carbon Steel Oven Bakeware Baking Set",
+    image: "images/products/kettle.jpg",
+    name: "Electric Kettle 1.8 Litre Stainless Steel with 360° Rotational Base, 1350 W - Silver (9002)",
     rating: {
       stars: 4.5,
       count: 175
@@ -123,13 +123,13 @@ export const products = [
   },
   {
     id: "3fdfe8d6-9a15-4979-b459-585b0d0545b9",
-    image: "images/products/liquid-laundry-detergent-plain.jpg",
-    name: "Liquid Laundry Detergent, 110 Loads, 82.5 Fl Oz",
+    image: "images/products/wash.jpg",
+    name: "G 7 kg 5 Star FHB1207Z2M Fully-Automatic Front Load Washing Machine ",
     rating: {
       stars: 4.5,
       count: 305
     },
-    priceCents: 2899,
+    priceCents: 34000,
     keywords: [
       "bathroom",
       "cleaning"
@@ -314,13 +314,13 @@ export const products = [
   },
   {
     id: "a93a101d-79ef-4cf3-a6cf-6dbe532a1b4a",
-    image: "images/products/bathroom-rug.jpg",
-    name: "Bathroom Bath Rug Mat 20 x 31 Inch - Grey",
+    image: "images/products/oven.jpg",
+    name: "23L Convection Microwave Oven (NN-CT35MBFDG,Black Floral, 360° Heat Wrap)",
     rating: {
       stars: 4.5,
       count: 119
     },
-    priceCents: 1250,
+    priceCents: 14000,
     keywords: [
       "bathmat",
       "bathroom",

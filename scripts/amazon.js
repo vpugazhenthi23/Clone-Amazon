@@ -1,6 +1,6 @@
-import { cart, addToCart,updateCartQuantity } from '../../data/cart.js';
-import { products } from '../../data/products.js';
-import { formatMoney } from './utils/currency.js';
+import { cart, addToCart, updateCartQuantity } from "../../data/cart.js";
+import { products } from "../../data/products.js";
+import { formatMoney } from "./utils/currency.js";
 let productsHTML = "";
 products.forEach((prod) => {
     productsHTML += `
@@ -73,6 +73,6 @@ document.querySelectorAll(".js-cart").forEach((cartbtn) => {
 
         addToCart(productId, productName, quantNum, extractValue);
 
-        updateCartQuantity()
+        updateCartQuantity();
     });
 });

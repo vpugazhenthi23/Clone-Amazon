@@ -112,28 +112,41 @@ document.querySelector(".js-order").innerHTML = productsResult;
 document.querySelector(".js-link").innerHTML = `${cart.length} Items`;
 
 document.querySelectorAll(".js-delete").forEach((link) => {
+    const productId = link.dataset.propertyId;
+    const cartItem = document.querySelector(`.js-cart-item-${productId}`);
+    cartItem.addEventListener('keydown', (event) => {
+        if (event.key === 'Delete') {
+            link.click();
+            console.log('Deleted');
+        }
+    })
     link.addEventListener("click", () => {
-        const productId = link.dataset.propertyId;
         removeCart(productId);
-
-        const cartItem = document.querySelector(`.js-cart-item-${productId}`);
         cartItem.remove();
+
     });
 });
 
 document.querySelectorAll(".js-update").forEach((link) => {
     link.addEventListener("click", () => {
         const updateItem = link.dataset.updateId;
-        document.querySelector(`.js-cart-item-${updateItem}`)
-            .classList.add("is-editing-quantity");
+        document.querySelector(`.js-cart-item-${updateItem}`).classList.add("is-editing-quantity");
+        const inputElement = document.querySelector(`.ip-quantity-${updateItem}`);
+        inputElement.value = "";
     });
 });
 
 document.querySelectorAll(".save-quantity-link").forEach((item) => {
     const saveId = item.dataset.saveId;
     const inputElement = document.querySelector(`.ip-quantity-${saveId}`);
-    let newInput = Number(inputElement.value);
-    
+
+    inputElement.addEventListener('keydown', (event) => {
+        if (event.key === "Enter") {
+            item.click();
+        }
+
+    })
+
     item.addEventListener("click", () => {
         const saveId = item.dataset.saveId;
         const changeId = document.querySelector(`.js-cart-item-${saveId}`)
@@ -141,18 +154,20 @@ document.querySelectorAll(".save-quantity-link").forEach((item) => {
 
         const inputElement = document.querySelector(`.ip-quantity-${saveId}`);
         let newInput = Number(inputElement.value);
-        updateQuantity(saveId, newInput);
 
         if (newInput > 0 && newInput < 100) {
             const quantityLabel = document.querySelector(`.label-quantity-${saveId}`);
             quantityLabel.innerHTML = newInput;
-        } else {
-            alert(`You reached maximum capcity of quantity --> ${newInput}`);
+        }
+
+        else {
+            alert(`You Reached the maximum quantuty of = ${newInput}`);
             newInput = 0;
             const quantityLabel = document.querySelector(`.label-quantity-${saveId}`);
             quantityLabel.innerHTML = newInput;
             updateQuantity(saveId, newInput);
         }
+        updateQuantity(saveId, newInput);
     });
 });
 
